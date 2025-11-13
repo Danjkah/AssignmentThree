@@ -1,0 +1,6 @@
+@AssignmentThree.API_HostAddress = http://localhost:5272
+
+GET {{AssignmentThree.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

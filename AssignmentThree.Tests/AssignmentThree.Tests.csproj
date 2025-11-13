@@ -18,4 +18,10 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AssignmentThree.API\AssignmentThree.API.csproj" />
+    <ProjectReference Include="..\AssignmentThree.Core\AssignmentThree.Core.csproj" />
+    <ProjectReference Include="..\AssignmentThree.Infrastructure\AssignmentThree.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

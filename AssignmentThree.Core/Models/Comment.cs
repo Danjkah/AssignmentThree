@@ -25,5 +25,5 @@ public class Comment
 
     public DateTime CreatedDate {get;set;} = DateTime.UtcNow;
 
-    public required Post Post {get;set;} 
+    public Post? Post {get;set;} 
 }

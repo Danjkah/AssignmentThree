@@ -5,8 +5,6 @@ namespace AssignmentThree.Core.DTOs;
 
 public class CommentUpdateDto
 {
-    [Required]
-    public int PostId {get;set;}
 
     [Required]
     [MaxLength(100)]

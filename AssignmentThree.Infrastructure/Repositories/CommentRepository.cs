@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using AssignmentThree.Core.Interfaces;
 using AssignmentThree.Core.Models;
 using AssignmentThree.Infrastructure.Data;
+using System.Data.Common;
+using SQLitePCL;
 
 namespace AssignmentThree.Infrastructure.Repositories;
 
@@ -48,6 +50,13 @@ public class CommentRepository : ICommentRepository
     public async Task<IEnumerable<Comment>> GetAllCommentsAsync()
     {
         return await _context.Comments.ToListAsync();
+    }
+
+    public async Task<IEnumerable<Comment>> GetAllCommentsByPostIdAsync(int postId)
+    {
+        return await _context.Comments
+                       .Where(c => c.PostId == postId)
+                       .ToListAsync();
     }
 
     public async Task<Comment?> GetCommentByIdAsync(int id)

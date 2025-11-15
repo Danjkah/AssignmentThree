@@ -7,8 +7,7 @@ namespace AssignmentThree.Core.Interfaces
         Task<IEnumerable<Post>> GetAllPostsAsync();
         Task<Post?> GetPostByIdAsync(int id);
         Task<Post> CreatePostAsync(Post post);
-        Task<bool> UpdatePostAsync(int id, Post post);
-
+        Task<Post?> UpdatePostAsync(Post post);
         Task<bool> PostExistsAsync (int id);
         Task<bool> DeletePostAsync(int id);
     }

@@ -51,21 +51,22 @@ public class PostRepository : IPostRepository
         return await _context.Posts.AnyAsync(p => p.Id == id);
     }
 
-    public async Task<bool> UpdatePostAsync(int id, Post post)
+    public async Task<Post?> UpdatePostAsync(Post post)
     {
 
-        var postToUpdate = await _context.Posts.FindAsync(id);
-        if (postToUpdate == null)
+        var existingPost = await _context.Posts.FindAsync(post.Id);
+        if (existingPost == null)
         {
-            return false;
+            return null;
         }
-        postToUpdate.Author = post.Author;
-        postToUpdate.Content = post.Content;
-        postToUpdate.UpdatedDate = DateTime.UtcNow;
-        postToUpdate.Title = post.Title;
+        existingPost.Id = post.Id; 
+        existingPost.Author = post.Author;
+        existingPost.Content = post.Content;
+        existingPost.UpdatedDate = DateTime.UtcNow;
+        existingPost.Title = post.Title;
 
         await _context.SaveChangesAsync();
-        return  true; 
+        return  existingPost; 
 
     }
 }

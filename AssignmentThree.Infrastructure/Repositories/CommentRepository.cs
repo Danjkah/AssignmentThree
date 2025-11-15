@@ -55,23 +55,23 @@ public class CommentRepository : ICommentRepository
         return await _context.Comments.FindAsync(id);
     }
 
-    public async Task<bool> UpdateCommentAsync(int id, Comment comment)
+    public async Task<Comment?> UpdateCommentAsync(Comment comment)
     {
-        var commentToUpdate = await _context.Comments.FindAsync(id);
+        var existingComment = await _context.Comments.FindAsync(comment.Id);
 
-        if(commentToUpdate == null)
+        if(existingComment == null)
         {
-            return false;
+            return null;
         }
 
-        commentToUpdate.PostId = comment.PostId;
-        commentToUpdate.Email = comment.Email;
-        commentToUpdate.Name = comment.Name;
-        commentToUpdate.Content = comment.Content; 
+        existingComment.PostId = comment.PostId;
+        existingComment.Email = comment.Email;
+        existingComment.Name = comment.Name;
+        existingComment.Content = comment.Content; 
 
         await _context.SaveChangesAsync();
 
-        return true;
+        return existingComment;
 
 
     }

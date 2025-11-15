@@ -14,6 +14,5 @@ public class PostUpdateDto
 
     public string Author {get; set;} = "admin";
 
-    public DateTime? UpdatedDate {get;set;}
 
 }

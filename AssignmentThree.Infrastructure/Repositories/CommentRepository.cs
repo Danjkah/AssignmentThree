@@ -14,6 +14,11 @@ public class CommentRepository : ICommentRepository
         _context = context; 
     }
 
+    public async Task<bool> CommentExistsAsync(int id)
+    {
+        return await _context.Comments.AnyAsync(c => c.Id == id);
+    }
+
     public async Task<Comment> CreateCommentAsync(int postId, Comment comment)
     {
         comment.CreatedDate = DateTime.UtcNow;
@@ -70,4 +75,6 @@ public class CommentRepository : ICommentRepository
 
 
     }
+
+    
 }

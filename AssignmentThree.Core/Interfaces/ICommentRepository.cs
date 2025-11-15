@@ -8,6 +8,8 @@ namespace AssignmentThree.Core.Interfaces
         Task<Comment?> GetCommentByIdAsync(int id);
         Task<Comment> CreateCommentAsync(int postId,  Comment comment);
         Task<bool> UpdateCommentAsync(int id, Comment comment);
+
+        Task<bool> CommentExistsAsync (int id);
         Task<bool> DeleteCommentAsync(int id);
     }
 }

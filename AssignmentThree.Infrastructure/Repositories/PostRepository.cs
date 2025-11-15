@@ -46,6 +46,10 @@ public class PostRepository : IPostRepository
         return await _context.Posts.FindAsync(id);
     }
 
+    public async Task<bool> PostExistsAsync(int id)
+    {
+        return await _context.Posts.AnyAsync(p => p.Id == id);
+    }
 
     public async Task<bool> UpdatePostAsync(int id, Post post)
     {

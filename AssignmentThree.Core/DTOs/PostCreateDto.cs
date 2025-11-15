@@ -12,6 +12,8 @@ public class PostCreateDto
     [Required]
     public string Content {get; set;} = string.Empty;
 
+    public string Author {get; set;} = "admin";
+
     public DateTime? UpdatedDate {get;set;}
 
 }

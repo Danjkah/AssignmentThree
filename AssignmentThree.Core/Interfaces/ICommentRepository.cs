@@ -7,7 +7,7 @@ namespace AssignmentThree.Core.Interfaces
         Task<IEnumerable<Comment>> GetAllCommentsAsync();
         Task<Comment?> GetCommentByIdAsync(int id);
         Task<IEnumerable<Comment>> GetAllCommentsForPostAsync(int postId);
-        Task<Comment> CreateCommentAsync(int postId);
+        Task<Comment> CreateCommentAsync(int postId,  Comment comment);
         Task<bool> UpdateCommentAsync(int id, Comment comment);
         Task<bool> DeleteCommentAsync(int id);
     }

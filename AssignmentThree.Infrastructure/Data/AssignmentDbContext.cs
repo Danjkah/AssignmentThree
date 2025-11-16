@@ -59,17 +59,6 @@ public class AssignmentDbContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade);
 
         });
-
-        base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Post>(entity =>
-        {
-            
-        });
-
-
-
-
     }
     
-
 } 

@@ -8,11 +8,11 @@ namespace TaskManagement.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CommentsController : ControllerBase
+public class commentsController : ControllerBase
 {
     private readonly ICommentRepository _commentRepository;
 
- public CommentsController(ICommentRepository commentRepository, IPostRepository postRepository)
+ public commentsController(ICommentRepository commentRepository, IPostRepository postRepository)
     {
         _commentRepository = commentRepository;
     }
@@ -41,43 +41,7 @@ public class CommentsController : ControllerBase
 
     }
 
-    // GET: api/posts/{postId}/comments
-    [HttpGet("/api/posts/{postId}/comments")]
-    public async Task<ActionResult<IEnumerable<Comment>>> GetAllCommentsForPost(int postId)
-    {
-        var comments = await _commentRepository.GetAllCommentsByPostIdAsync(postId);
-
-        return Ok(comments); 
-    }
-
- //POST: api/posts/{postId}/comments
-    [HttpPost("/api/posts/{postId}/comments")]
-    public async Task<ActionResult<Task>> CreateComment(int postId, [FromBody] CommentCreateDto commentDto)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState); //this is not in the requirements of the assignment but I added it in because it just makes sense to have
-        }
-
-        var comment = new Comment
-        {
-          Name = commentDto.Name,
-          Email = commentDto.Email,
-          Content = commentDto.Content,
-          PostId = postId,
-        
-        };
-
-        var createdComment = await _commentRepository.CreateCommentAsync(postId, comment);
-
-        return CreatedAtAction(
-            nameof(GetComment),
-            new {id = createdComment.Id},
-            createdComment
-        );
-    }
-
-    //PUT: api/comments
+    //PUT: api/comments/{id}
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateComment(int id, [FromBody] CommentUpdateDto updateDto)
     {
@@ -91,6 +55,8 @@ public class CommentsController : ControllerBase
         {
             return NotFound();
         }
+
+
 
         var post = new Comment
         {
@@ -134,7 +100,7 @@ public class CommentsController : ControllerBase
 
     }
 
-  
+    //PATCH: api/posts/{id}
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteComment(int id)
     {
@@ -145,6 +111,44 @@ public class CommentsController : ControllerBase
         }
 
         return NoContent();
+    }
+
+
+
+    // GET: api/posts/{postId}/comments
+    [HttpGet("/api/posts/{postId}/comments")]
+    public async Task<ActionResult<IEnumerable<Comment>>> GetAllCommentsForPost(int postId)
+    {
+        var comments = await _commentRepository.GetAllCommentsByPostIdAsync(postId);
+
+        return Ok(comments); 
+    }
+
+    //POST: api/posts/{postId}/comments
+    [HttpPost("/api/posts/{postId}/comments")]
+    public async Task<ActionResult<Task>> CreateComment(int postId, [FromBody] CommentCreateDto commentDto)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState); //this is not in the requirements of the assignment but I added it in because it just makes sense to have
+        }
+
+        var comment = new Comment
+        {
+          Name = commentDto.Name,
+          Email = commentDto.Email,
+          Content = commentDto.Content,
+          PostId = postId,
+        
+        };
+
+        var createdComment = await _commentRepository.CreateCommentAsync(postId, comment);
+
+        return CreatedAtAction(
+            nameof(GetComment),
+            new {id = createdComment.Id},
+            createdComment
+        );
     }
 
 

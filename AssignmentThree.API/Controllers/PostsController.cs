@@ -8,16 +8,16 @@ namespace TaskManagement.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class PostsController : ControllerBase
+public class postsController : ControllerBase
 {
     private readonly IPostRepository _postRepository;
 
- public PostsController(IPostRepository postRepository)
+ public postsController(IPostRepository postRepository)
     {
         _postRepository = postRepository;
     }
 
-    //GET: api/Post
+    //GET: api/post
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Post>>> GetAllPosts()
     {
@@ -25,7 +25,7 @@ public class PostsController : ControllerBase
         return Ok(posts);
     }
 
-    //GET: api/Posts/{id}
+    //GET: api/posts/{id}
     [HttpGet("{id}")]
     public async Task<ActionResult<Post>> GetPost(int id)
     {
@@ -40,7 +40,7 @@ public class PostsController : ControllerBase
 
     }
 
-    //POST: api/Posts
+    //POST: api/posts
     [HttpPost]
     public async Task<ActionResult<Task>> CreatePost([FromBody] PostCreateDto postDto)
     {
@@ -65,7 +65,7 @@ public class PostsController : ControllerBase
         );
     }
 
-    //PUT: api/tasks/{id}
+    //PUT: api/posts/{id}
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdatePost(int id, [FromBody] PostUpdateDto postDto)
     {
@@ -120,7 +120,7 @@ public class PostsController : ControllerBase
 
     }
     
-    // DELETE: api/task/{id}
+    // DELETE: api/posts/{id}
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePost(int id)
     {

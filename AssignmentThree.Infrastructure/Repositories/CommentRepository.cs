@@ -72,8 +72,6 @@ public class CommentRepository : ICommentRepository
         {
             return null;
         }
-
-        existingComment.PostId = comment.PostId;
         existingComment.Email = comment.Email;
         existingComment.Name = comment.Name;
         existingComment.Content = comment.Content; 
